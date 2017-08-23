@@ -1,5 +1,5 @@
 {
-  "name": "comicbooks-cli",
+  "name": "comicbook-cli",
   "version": "0.0.2",
   "description": "A CLI tool to display the latest comic releases",
   "engines": {
