@@ -1,16 +1,26 @@
 {
   "name": "comicbooks-cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A CLI tool to display the latest comic releases",
   "engines": {
     "node": "8.2.1"
+  },
+  "bin": {
+    "comics": "./index.js"
   },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": {
-    "comics": "./index.js"
+  "dependencies": {
+    "axios": "0.16.2",
+    "cheerio": "1.0.0-rc.2",
+    "cli-table": "0.3.1",
+    "commander": "2.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguelc1221/comicbook-cli.git"
   },
   "keywords": [
     "Marvel",
@@ -18,12 +28,9 @@
     "Comics",
     "comicbook"
   ],
+  "bugs": {
+    "url": "https://github.com/miguelc1221/comicbook-cli/issues"
+  },
   "author": "Miguel Correa",
-  "license": "MIT",
-  "dependencies": {
-    "axios": "0.16.2",
-    "cheerio": "1.0.0-rc.2",
-    "cli-table": "0.3.1",
-    "commander": "2.11.0"
-  }
+  "license": "MIT"
 }

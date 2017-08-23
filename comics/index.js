@@ -37,6 +37,7 @@ const choices = [
 
 const getAllComics = async () => {
   let response;
+
   try {
     response = await axios.get(url)
   } catch (error) {
@@ -82,10 +83,10 @@ const getComicsByPublisher = async (publisherName) => {
     const publisher = $(this).find('.comic-list-content .comic-details strong').text();
     const date = $(this).find('.comic-list-content .comic-details').text().match(/\·(.*)\·/)
     if (date !== null) {
-      newDate = date.pop().trim()
+      validDate = date.pop().trim()
     }
     if (publisher === publisherName) {
-      table.push([name, publisher, issue, newDate]);
+      table.push([name, publisher, issue, validDate]);
     }
   })
 
