@@ -4,7 +4,7 @@ A CLI tool to display the latest comic book releases. Inspired by https://github
 ![Comicbooks in the terminal](https://raw.github.com/miguelc1221/comicbooks-cli/master/screenshot.png)
 
 ## Install
-
+Requires Node Version 8.0.0+
 ```js
 npm install comicbook-cli -g
 ```
