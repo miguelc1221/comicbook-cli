@@ -4,12 +4,16 @@ const cheerio = require('cheerio');
 const url = 'https://leagueofcomicgeeks.com/comics/new-comics';
 
 const table = new Table({
-  head: ['Name', 'Publisher', 'Issue #', 'Date'],
-  colWidths: [50, 20, 10, 20]
+  head: ['Name', 'Publisher', 'Issue', 'Date'],
+  colWidths: [50, 20, 10, 15]
 });
 
 const choices = [
   "Marvel Comics",
+  "Antarctic Press",
+  "Icon",
+  "Archaia",
+  "Keenspot",
   "DC Comics",
   "IDW Publishing",
   "Image Comics",
@@ -46,12 +50,21 @@ const getAllComics = async () => {
   }
 
   const $ = cheerio.load(response.data);
+  const date = $('#date_release_week').val()
 
   $('#comic-list .media-list').children().each(function(val, ele) {
     const name = $(this).find('.comic-title a').text().replace(/#.*/g,'').trim()
-    const issue = $(this).find('.comic-title a').text().replace(/.*#/g,'')
     const publisher = $(this).find('.comic-list-content .comic-details strong').text();
-    table.push([name, publisher, issue])
+    let issue = $(this).find('.comic-title a').text().match(/(#\d.*?\s|#\d.*)/);
+
+    // if comic has no issue number
+    if (issue === null) {
+      issue = 0
+    } else {
+      issue = issue[0].trim();
+    }
+
+    table.push([name, publisher, issue, date])
   })
 
   console.log(table.toString());
@@ -75,18 +88,22 @@ const getComicsByPublisher = async (publisherName) => {
   }
 
   const $ = cheerio.load(response.data);
+  const date = $('#date_release_week').val()
 
   $('#comic-list .media-list').children().each(function(val, ele) {
-    let newDate = null;
     const name = $(this).find('.comic-title a').text().replace(/#.*/g,'').trim();
-    const issue = $(this).find('.comic-title a').text().replace(/.*#/g,'');
     const publisher = $(this).find('.comic-list-content .comic-details strong').text();
-    const date = $(this).find('.comic-list-content .comic-details').text().match(/\·(.*)\·/)
-    if (date !== null) {
-      validDate = date.pop().trim()
+    let issue = $(this).find('.comic-title a').text().match(/(#\d.*?\s|#\d.*)/);
+
+    // if comic has no issue number
+    if (issue === null) {
+      issue = 0
+    } else {
+      issue = issue[0].trim();
     }
+
     if (publisher === publisherName) {
-      table.push([name, publisher, issue, validDate]);
+      table.push([name, publisher, issue, date]);
     }
   })
 
