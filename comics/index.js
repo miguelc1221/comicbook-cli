@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const url = 'https://leagueofcomicgeeks.com/comics/new-comics';
 
 const table = new Table({
-  head: ['Name', 'Publisher', 'Issue', 'Date'],
+  head: ['Name', 'Publisher', 'Issue #', 'Date'],
   colWidths: [50, 20, 10, 15]
 });
 
@@ -61,7 +61,7 @@ const getAllComics = async () => {
     if (issue === null) {
       issue = 0
     } else {
-      issue = issue[0].trim();
+      issue = issue[0].substr(1, issue.length).trim();
     }
 
     table.push([name, publisher, issue, date])
@@ -99,7 +99,7 @@ const getComicsByPublisher = async (publisherName) => {
     if (issue === null) {
       issue = 0
     } else {
-      issue = issue[0].trim();
+      issue = issue[0].substr(1, issue.length).trim();
     }
 
     if (publisher === publisherName) {
