@@ -10,9 +10,9 @@ program
   .parse(process.argv);
 
 if (program.C) {
-  comics.getAllComics()
+  comics.getAllComics();
 }
 
 if (program.comics) {
-  comics.getComicsByPublisher(program.comics)
+  comics.getComicsByPublisher(program.comics);
 }

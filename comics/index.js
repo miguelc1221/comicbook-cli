@@ -9,108 +9,127 @@ const table = new Table({
 });
 
 const choices = [
-  "Marvel Comics",
-  "Antarctic Press",
-  "Icon",
-  "Archaia",
-  "Keenspot",
-  "DC Comics",
-  "IDW Publishing",
-  "Image Comics",
-  "Dynamite",
-  "BOOM! Studios",
-  "Dark Horse Comics",
-  "Action Lab Comics",
-  "Archie Comics",
-  "American Mythology",
-  "Oni Press",
-  "AfterShock Comics",
-  "Aspen Comics",
-  "Lion Forge Comics",
-  "Scout Comics",
-  "Valiant",
-  "Zenescope",
-  "Archaia",
-  "Joe Books",
-  "Papercuts",
-  "Space Goat Publishing",
-  "Titan Books",
-  "Vault Comics",
-  "Young Animal"
-]
+  'Marvel Comics',
+  'Antarctic Press',
+  'Icon',
+  'Archaia',
+  'Keenspot',
+  'DC Comics',
+  'IDW Publishing',
+  'Image Comics',
+  'Dynamite',
+  'BOOM! Studios',
+  'Dark Horse Comics',
+  'Action Lab Comics',
+  'Archie Comics',
+  'American Mythology',
+  'Oni Press',
+  'AfterShock Comics',
+  'Aspen Comics',
+  'Lion Forge Comics',
+  'Scout Comics',
+  'Valiant',
+  'Zenescope',
+  'Archaia',
+  'Joe Books',
+  'Papercuts',
+  'Space Goat Publishing',
+  'Titan Books',
+  'Vault Comics',
+  'Young Animal'
+];
 
 const getAllComics = async () => {
-  let response;
-
   try {
-    response = await axios.get(url)
-  } catch (error) {
-    console.log(error)
-    return;
-  }
+    const response = await axios.get(url);
+    const $ = cheerio.load(response.data);
+    const date = $('#date_release_week').val();
 
-  const $ = cheerio.load(response.data);
-  const date = $('#date_release_week').val()
+    $('#comic-list .media-list')
+      .children()
+      .each(function(val, ele) {
+        const name = $(this)
+          .find('.comic-title a')
+          .text()
+          .replace(/#.*/g, '')
+          .trim();
 
-  $('#comic-list .media-list').children().each(function(val, ele) {
-    const name = $(this).find('.comic-title a').text().replace(/#.*/g,'').trim()
-    const publisher = $(this).find('.comic-list-content .comic-details strong').text();
-    let issue = $(this).find('.comic-title a').text().match(/(#\d.*?\s|#\d.*)/);
+        const publisher = $(this)
+          .find('.comic-list-content .comic-details strong')
+          .text();
 
-    // if comic has no issue number
-    if (issue === null) {
-      issue = 0
-    } else {
-      issue = issue[0].substr(1, issue.length).trim();
-    }
+        let issue = $(this)
+          .find('.comic-title a')
+          .text()
+          .match(/(#\d.*?\s|#\d.*)/);
 
-    table.push([name, publisher, issue, date])
-  })
+        // if comic has no issue number
+        if (issue === null) {
+          issue = 0;
+        } else {
+          issue = issue[0].substr(1, issue.length).trim();
+        }
 
-  console.log(table.toString());
-}
+        table.push([name, publisher, issue, date]);
+      });
 
-const getComicsByPublisher = async (publisherName) => {
-
-  let response;
-
-  if (choices.indexOf(publisherName) < 0) {
-    console.log('Please make sure to select one of the following publishers');
-    choices.forEach((val) => console.log(`- ${val}`));
-    return
-  }
-
-  try {
-    response = await axios.get(url)
+    console.log(table.toString());
   } catch (error) {
     console.log(error);
     return;
   }
+};
 
-  const $ = cheerio.load(response.data);
-  const date = $('#date_release_week').val()
+const getComicsByPublisher = async publisherName => {
+  if (choices.indexOf(publisherName) < 0) {
+    console.log('Please make sure to select one of the following publishers');
+    choices.forEach(val => console.log(`- ${val}`));
+    return;
+  }
 
-  $('#comic-list .media-list').children().each(function(val, ele) {
-    const name = $(this).find('.comic-title a').text().replace(/#.*/g,'').trim();
-    const publisher = $(this).find('.comic-list-content .comic-details strong').text();
-    let issue = $(this).find('.comic-title a').text().match(/(#\d.*?\s|#\d.*)/);
+  try {
+    const response = await axios.get(url);
+    const $ = cheerio.load(response.data);
+    const date = $('#date_release_week').val();
 
-    // if comic has no issue number
-    if (issue === null) {
-      issue = 0
-    } else {
-      issue = issue[0].substr(1, issue.length).trim();
-    }
+    $('#comic-list .media-list')
+      .children()
+      .each(function(val, ele) {
+        const name = $(this)
+          .find('.comic-title a')
+          .text()
+          .replace(/#.*/g, '')
+          .trim();
 
-    if (publisher === publisherName) {
-      table.push([name, publisher, issue, date]);
-    }
-  })
+        const publisher = $(this)
+          .find('.comic-list-content .comic-details strong')
+          .text();
 
-  console.log(table.toString());
-}
+        let issue = $(this)
+          .find('.comic-title a')
+          .text()
+          .match(/(#\d.*?\s|#\d.*)/);
+
+        // if comic has no issue number
+        if (issue === null) {
+          issue = 0;
+        } else {
+          issue = issue[0].substr(1, issue.length).trim();
+        }
+
+        if (publisher === publisherName) {
+          table.push([name, publisher, issue, date]);
+        }
+      });
+
+    console.log(table.toString());
+  } catch (error) {
+    console.log(error);
+    return;
+  }
+};
 
 module.exports = {
   getAllComics,
   getComicsByPublisher
-}
+};
