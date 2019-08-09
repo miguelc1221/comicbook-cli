@@ -47,7 +47,7 @@ const getAllComics = async () => {
 
     $('#comic-list .media-list')
       .children()
-      .each(function(val, ele) {
+      .each(function() {
         const name = $(this)
           .find('.comic-title a')
           .text()
@@ -94,7 +94,7 @@ const getComicsByPublisher = async publisherName => {
 
     $('#comic-list .media-list')
       .children()
-      .each(function(val, ele) {
+      .each(function() {
         const name = $(this)
           .find('.comic-title a')
           .text()
