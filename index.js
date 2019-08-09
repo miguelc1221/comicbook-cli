@@ -14,5 +14,5 @@ if (program.all) {
 }
 
 if (program.publisher) {
-  comics.getComicsByPublisher(program.comics);
+  comics.getComicsByPublisher(program.publisher);
 }
