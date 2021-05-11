@@ -4,21 +4,16 @@ import { getAllComics, getComicsByPublisher } from './comics/index.mjs'
 
 const program = new Command()
 
+program.version('1.0.0')
+
 program
-  .version('1.0.0')
-  .option(
-    '-p, --publisher "<publisher>"',
-    'Search for recent releases by publisher'
-  )
-  .option('--all', 'Search for all recent release')
-  .parse(process.argv)
+  .command('all')
+  .description('Search for all recent release')
+  .action(getAllComics)
 
-const options = program.opts()
+program
+  .command('publisher <name>')
+  .description('Search for recent releases by publisher')
+  .action(getComicsByPublisher)
 
-if (options.all) {
-  getAllComics()
-}
-
-if (options.publisher) {
-  getComicsByPublisher(options.publisher)
-}
+program.parse(process.argv)

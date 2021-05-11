@@ -1,6 +1,6 @@
 {
   "name": "comicbook-cli",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A CLI tool to display the latest comic releases",
   "engines": {
     "node": "16.1.0"

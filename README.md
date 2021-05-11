@@ -1,6 +1,6 @@
 # ComicBook CLI
 
-A CLI tool to display the latest comic book releases. Inspired by https://github.com/ryanburgess/nba-cli
+A CLI tool to display the latest comic book releases.
 
 ![Comicbooks in the terminal](https://raw.github.com/miguelc1221/comicbooks-cli/master/screenshot.png)
 
