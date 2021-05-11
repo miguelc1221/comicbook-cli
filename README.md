@@ -17,16 +17,15 @@ npm install comicbook-cli -g
 ### Display a table with all the latest issues by publisher
 
 ```js
-comics -p <publisher>
-// eg: comics --publisher "Marvel Comics"
-// or
-// eg: comics -p "Marvel Comics"
+comics publisher <name>
+// eg: comics publisher "Marvel Comics"
 ```
 
 ### Display a table with all the latest issues
 
 ```js
-comics --all
+comics all
+// eg: comics all
 ```
 
 ## Contributing
