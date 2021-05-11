@@ -1,22 +1,24 @@
 {
   "name": "comicbook-cli",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A CLI tool to display the latest comic releases",
   "engines": {
-    "node": "8.2.1"
+    "node": "16.1.0"
   },
   "bin": {
-    "comics": "./index.js"
+    "comics": "./index.mjs"
   },
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .mjs",
+    "format": "prettier --write '**/*.mjs'"
   },
   "dependencies": {
-    "axios": "^0.19.0",
-    "cheerio": "1.0.0-rc.2",
-    "cli-table": "0.3.1",
-    "commander": "2.11.0"
+    "axios": "^0.21.1",
+    "cheerio": "1.0.0-rc.9",
+    "cli-table": "0.3.6",
+    "commander": "7.2.0"
   },
   "repository": {
     "type": "git",
@@ -32,5 +34,11 @@
     "url": "https://github.com/miguelc1221/comicbook-cli/issues"
   },
   "author": "Miguel Correa",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.0"
+  }
 }

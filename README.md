@@ -1,10 +1,13 @@
 # ComicBook CLI
+
 A CLI tool to display the latest comic book releases. Inspired by https://github.com/ryanburgess/nba-cli
 
 ![Comicbooks in the terminal](https://raw.github.com/miguelc1221/comicbooks-cli/master/screenshot.png)
 
 ## Install
-Requires Node Version 8.0.0+
+
+Requires Node Version 16.1.0+
+
 ```js
 npm install comicbook-cli -g
 ```
@@ -12,19 +15,22 @@ npm install comicbook-cli -g
 ## Commands
 
 ### Display a table with all the latest issues by publisher
+
 ```js
 comics -p <publisher>
-// eg: comics --publisher "Marvel Comics" 
+// eg: comics --publisher "Marvel Comics"
 // or
 // eg: comics -p "Marvel Comics"
 ```
 
 ### Display a table with all the latest issues
+
 ```js
 comics --all
 ```
 
 ## Contributing
+
 1. Fork it
 2. Run `npm install`
 3. Create your feature branch (`git checkout -b my-new-feature`)
@@ -33,4 +39,5 @@ comics --all
 6. Create new Pull Request
 
 ## License
+
 MIT © [Miguel Correa](http://github.com/miguelc1221)
