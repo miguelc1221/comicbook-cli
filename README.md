@@ -2,9 +2,11 @@
 
 A CLI tool to display the latest comic book releases.
 
-![Comicbooks in the terminal](https://raw.github.com/miguelc1221/comicbooks-cli/master/screenshot.png)
+<img width="1211" alt="screenshot" src="https://user-images.githubusercontent.com/11799597/169952087-395c998a-385a-4763-b7b0-7db3ba7bc8a6.png">
 
 ## Install
+
+
 
 Requires Node Version 16.1.0+
 
