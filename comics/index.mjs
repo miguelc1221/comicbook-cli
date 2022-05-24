@@ -120,7 +120,7 @@ export const getComicsByPublisher = async (publisherName) => {
 
     console.log(table.toString())
   } catch (error) {
-    console.log(error)
+    console.log('Oops something went wrong...')
     return
   }
 }

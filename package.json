@@ -3,7 +3,7 @@
   "version": "2.0.1",
   "description": "A CLI tool to display the latest comic releases",
   "engines": {
-    "node": "16.1.0"
+    "node": "18.0.0"
   },
   "bin": {
     "comics": "./index.mjs"
